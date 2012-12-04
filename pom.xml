@@ -26,6 +26,11 @@
         </repository>
         
         <repository>
+            <id>bp-repo</id>
+            <url>http://repo.sacredlabyrinth.net:8081/artifactory/repo/BukkitDev/</url>
+        </repository>
+        
+        <repository>
             <id>essentials-repo</id>
             <url>http://ess.ementalo.com/nexus/content/groups/public/</url>
         </repository>
@@ -47,6 +52,7 @@
             <version>1.18</version>
             <type>jar</type>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         
         <dependency>
@@ -61,6 +67,7 @@
             <version>1.2</version>
             <type>jar</type>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         
         <dependency>
@@ -69,6 +76,7 @@
             <version>1.0</version>
             <type>jar</type>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         
     </dependencies>

@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.ruhlendavis.mc</groupId>
+  <artifactId>communitybridge</artifactId>
+  <version>1.11.1</version>
+  <name>CommunityBridge</name>
+    <repositories>
+        <repository>
+            <id>bukkit-repo</id>
+            <url>http://repo.bukkit.org/content/groups/public/</url>
+        </repository>
+
+        <repository>
+            <id>vault-repo</id>
+            <url>http://ci.herocraftonline.com/plugin/repository/everything/</url>
+        </repository>
+        
+        <repository>
+            <id>pex-repo</id>
+            <url>http://repo.tehkode.ru/repository/bukkit-plugins/</url>
+        </repository>
+        
+        <repository>
+            <id>bp-repo</id>
+            <url>http://repo.sacredlabyrinth.net:8081/artifactory/repo/</url>
+        </repository>
+        
+        <repository>
+            <id>essentials-repo</id>
+            <url>http://ess.ementalo.com/nexus/content/groups/public/</url>
+        </repository>
+        
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <!-- Bukkit API Version, change if out dated -->
+            <version>1.4.5-R0.1-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.tehkode</groupId>
+            <artifactId>PermissionsEx</artifactId>
+            <version>1.18</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.milkbowl.vault</groupId>
+            <artifactId>Vault</artifactId>
+            <version>1.2.19-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>BukkitDev.org.bukkit</groupId>
+            <artifactId>PermissionsBukkit</artifactId>
+            <version>1.2</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.anjocaido</groupId>
+            <artifactId>GroupManager</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        
+    </dependencies>
+    <build>
+        <!-- Filter only plugin.yml -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>plugin.yml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <!-- Minimum Minecraft requirement -->
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

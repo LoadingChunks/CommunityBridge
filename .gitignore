@@ -20,3 +20,7 @@ nb-configuration.xml
 *.aux
 /coverage
 /output
+.classpath
+.project
+target/
+.settings/

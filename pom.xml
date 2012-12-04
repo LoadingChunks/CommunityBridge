@@ -26,7 +26,7 @@
         </repository>
         
         <repository>
-            <id>bp-repo</id>
+            <id>pb-repo</id>
             <url>http://repo.sacredlabyrinth.net:8081/artifactory/repo/BukkitDev/</url>
         </repository>
         
@@ -62,7 +62,7 @@
         </dependency>
         
         <dependency>
-            <groupId>BukkitDev.org.bukkit</groupId>
+            <groupId>org.bukkit</groupId>
             <artifactId>PermissionsBukkit</artifactId>
             <version>1.2</version>
             <type>jar</type>

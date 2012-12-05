@@ -6,8 +6,8 @@
   <name>CommunityBridge</name>
     <repositories>
         <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public/</url>
+            <id>lc-repo</id>
+            <url>http://repo.loadingchunks.net/content/groups/bukkit/</url>
         </repository>
 
         <repository>
@@ -41,7 +41,7 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <!-- Bukkit API Version, change if out dated -->
-            <version>1.4.5-R0.1-SNAPSHOT</version>
+            <version>1.4.5-R0.2</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
@@ -55,10 +55,12 @@
             <optional>true</optional>
         </dependency>
         
+    
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
             <artifactId>Vault</artifactId>
-            <version>1.2.19-SNAPSHOT</version>
+            <version>1.2.21-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         
         <dependency>

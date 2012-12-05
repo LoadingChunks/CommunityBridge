@@ -1,8 +1,8 @@
-name: CommunityBridge
-version: 1.12.0
-description: Community Bridging plugin based off of ChillerCrafts ForumBridge plugin
 authors: [ChillerCraft, NoRC, Feaelin]
+description: Community Bridging plugin based off of ChillerCrafts ForumBridge plugin
+name: CommunityBridge
 website: http://dev.bukkit.org/server-mods/communitybridge-fm/
+version: 1.12.0
 
 softdepend: [bPermissions, GroupManager, PermissionsBukkit, PermissionsEx]
 main: net.netmanagers.community.Main
@@ -14,29 +14,30 @@ main: net.netmanagers.community.Main
 commands:
   cbban:
     description: Bans from the forum.
-    #usage: "¤cIncorrect usage, use: /cbban <username>"
+    #usage: "&cIncorrect usage, use: /cbban <username>"
     permission: communitybridge.cbban
-    permission-message: "¤cYou do not have access to that command."
+    permission-message: "&cYou do not have access to that command."
   cbunban:
     description: Unbans from the forum.
-    #usage: "¤cIncorrect usage, use: /cbunban <username>"
+    #usage: "&cIncorrect usage, use: /cbunban <username>"
     permission: communitybridge.cbunban
-    permission-message: "¤cYou do not have access to that command."
+    permission-message: "&cYou do not have access to that command."
   cbrank:
     description: Ranks on the forum.
-    #usage: "¤cIncorrect usage, use: /cbrank <username> <rank>"
+    #usage: "&cIncorrect usage, use: /cbrank <username> <rank>"
     permission: communitybridge.cbrank
-    permission-message: "¤cYou do not have access to that command."
+    permission-message: "&cYou do not have access to that command."
   cbsync:
     description: Syncs to the forum.
-    #usage: "¤cIncorrect usage, use: /cbsync"
+    #usage: "&cIncorrect usage, use: /cbsync"
     permission: communitybridge.cbsync
-    permission-message: "¤cYou do not have access to that command."
+    permission-message: "&cYou do not have access to that command."
   cbsyncall:
     description: Syncs everyone to the forum.
-    #usage: "¤cIncorrect usage, use: /cbsyncall"
+    #usage: "&cIncorrect usage, use: /cbsyncall"
     permission: communitybridge.cbsyncall
-    permission-message: "¤cYou do not have access to that command."
+    permission-message: "&cYou do not have access to that command."
+
 permissions:
   communitybridge.*:
     description: Grants access to all CommunityBridge commands

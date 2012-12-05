@@ -24,6 +24,8 @@ import org.ruhlendavis.mc.communitybridge.PermissionHandlerGroupManager;
 import org.ruhlendavis.mc.communitybridge.PermissionHandlerPermissionsBukkit;
 import org.ruhlendavis.mc.communitybridge.PermissionHandlerPermissionsEx;
 import org.ruhlendavis.mc.utility.Log;
+
+import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class Main extends JavaPlugin {
@@ -480,6 +482,22 @@ public class Main extends JavaPlugin {
 		return false;
 	}
 
+	public static boolean removeGroups(Player player) {
+		try {
+			if (permissions_system.equalsIgnoreCase("PEX")) {
+				for(PermissionGroup grp : PermissionsEx.getUser(player.getName()).getGroups())
+				{
+					PermissionsEx.getUser(player.getName()).removeGroup(grp.getName());
+				}
+				return true;
+			}
+		} catch (Error e) {
+			log.severe(e.getMessage());
+		}
+
+		return false;
+	}
+	
 	public static boolean addGroup(String groupName, Player player, boolean n) {
 		try {
 			if (permissions_system.equalsIgnoreCase("PEX")) {
@@ -654,6 +672,9 @@ public class Main extends JavaPlugin {
 							requirements_met = false;
 						}
 					}
+					
+					// Remove all of their groups FIRST
+					removeGroups(p);
 
 					if (primary_group_synchronization_enabled) {
 						// Note: groups is a map <String, Object> so we need the

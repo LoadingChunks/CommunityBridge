@@ -27,7 +27,7 @@
         
         <repository>
             <id>pb-repo</id>
-            <url>http://repo.sacredlabyrinth.net:8081/artifactory/repo/BukkitDev/</url>
+            <url>http://www.gestdown.info:8888/nexus/content/groups/BukkitDev/</url>
         </repository>
         
         <repository>

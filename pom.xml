@@ -24,6 +24,11 @@
             <id>bp-repo</id>
             <url>http://repo.sacredlabyrinth.net:8081/artifactory/repo/</url>
         </repository>
+
+        <repository>
+            <id>bp-repo</id>
+            <url>http://repo.sacredlabyrinth.net:8081/artifactory/repo/BukkitDev/</url>
+        </repository>
         
         <repository>
             <id>pb-repo</id>
@@ -74,8 +79,17 @@
         
         <dependency>
             <groupId>org.anjocaido</groupId>
-            <artifactId>GroupManager</artifactId>
-            <version>1.0</version>
+            <artifactId>groupmanager</artifactId>
+            <version>1.9</version>
+            <type>jar</type>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>de.bananaco</groupId>
+            <artifactId>bPermissions</artifactId>
+            <version>dev-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope>
             <optional>true</optional>
@@ -107,8 +121,8 @@
                 <version>2.3.2</version>
                 <configuration>
                     <!-- Minimum Minecraft requirement -->
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>

@@ -30,6 +30,7 @@ import org.ruhlendavis.mc.communitybridge.PermissionHandlerPermissionsEx;
 import org.ruhlendavis.mc.utility.Log;
 
 import ru.tehkode.permissions.PermissionGroup;
+import ru.tehkode.permissions.bukkit.BukkitPermissions;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class Main extends JavaPlugin {
@@ -497,6 +498,16 @@ public class Main extends JavaPlugin {
 					PermissionsEx.getUser(player.getName()).removeGroup(grp.getName());
 				}
 				return true;
+			}
+			
+			if(permissions_system.equalsIgnoreCase("BukkitPerms")) {
+				Bukkit.getLogger().info("---------------------------------------------------");
+				for(Object g : groups.values())
+				{
+					String gr = g.toString();
+					Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "permissions player removegroup " + player.getName() + " " + gr);
+				}
+				Bukkit.getLogger().info("---------------------------------------------------");
 			}
 		} catch (Error e) {
 			log.severe(e.getMessage());

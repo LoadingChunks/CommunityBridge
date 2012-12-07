@@ -727,11 +727,20 @@ public class Main extends JavaPlugin {
 							
 							Collections.sort(sortableGroups, new Comparator<String>() {
 								public int compare(String s1, String s2) {
+									if(!groups.containsKey(s1))
+										return -1;
+									
+									if(!groups.containsKey(s2))
+										return 1;
+
 									return ((Integer)weightings.getInt(groups.get(s1).toString())).compareTo(weightings.getInt(groups.get(2).toString()));
 								}
 							});							
 							
 							for (String g : sortableGroups) {
+								if(!groups.containsKey(g))
+									continue;
+								
 								if(prerequisites.isSet(groups.get(g).toString()) && !extra_groups.contains(String.valueOf(prerequisites.getInt((String)groups.get(g)))))
 									continue;
 								

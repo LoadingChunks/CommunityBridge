@@ -728,7 +728,7 @@ public class Main extends JavaPlugin {
 						String extra_groups = res
 								.getString(secondary_groups_id_field);
 
-						if (extra_groups.length() > 0) {
+						if (extra_groups.length() > 0 || !primary_group_synchronization_enabled) {
 							ArrayList<String> sortableGroups = new ArrayList<String>(Arrays.asList(extra_groups.split(",")));
 							
 							Bukkit.getLogger().info("Parsing " + sortableGroups.size() + " groups");

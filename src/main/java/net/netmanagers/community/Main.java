@@ -500,7 +500,7 @@ public class Main extends JavaPlugin {
 				return true;
 			}
 			
-			if(permissions_system.equalsIgnoreCase("BukkitPerms")) {
+			if(permissions_system.equalsIgnoreCase("PermsBukkit")) {
 				Bukkit.getLogger().info("---------------------------------------------------");
 				for(Object g : groups.values())
 				{

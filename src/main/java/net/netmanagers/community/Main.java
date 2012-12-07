@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import net.netmanagers.api.SQL;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -145,6 +146,8 @@ public class Main extends JavaPlugin {
 
 	public static String wallet_key_value;
 	public static String wallet_field;
+	
+	public static ConfigurationSection prerequisites;
 
 	public static Map<String, Object> groups;
 
@@ -710,7 +713,11 @@ public class Main extends JavaPlugin {
 						String extra_groups = res
 								.getString(secondary_groups_id_field);
 						if (extra_groups.length() > 0) {
-							for (String g : extra_groups.split(",")) {
+							String[] extras = extra_groups.split(",");
+							for (String g : extras) {
+								if(prerequisites.isSet(groups.get(g).toString()) && extra_groups.contains(String.valueOf(prerequisites.getInt((String)groups.get(g)))))
+									continue;
+								
 								if (!g.isEmpty()) {
 									addGroup((String) groups.get(g), p,
 											firstsync);
@@ -1905,6 +1912,8 @@ public class Main extends JavaPlugin {
 				"basic-tracking.field-lifeticks-formatted-key-value", "");
 		lifeticks_formatted_field = this.getConfig().getString(
 				"basic-tracking.field-lifeticks-formatted-field", "");
+		
+		prerequisites = this.getConfig().getConfigurationSection("prerequisites");
 
 		if (use_banned) {
 			is_banned_field = this.getConfig().getString(

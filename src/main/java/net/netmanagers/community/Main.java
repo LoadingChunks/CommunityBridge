@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -148,6 +151,7 @@ public class Main extends JavaPlugin {
 	public static String wallet_field;
 	
 	public static ConfigurationSection prerequisites;
+	public static ConfigurationSection weightings;
 
 	public static Map<String, Object> groups;
 
@@ -712,9 +716,22 @@ public class Main extends JavaPlugin {
 					if (secondary_groups) {
 						String extra_groups = res
 								.getString(secondary_groups_id_field);
+
 						if (extra_groups.length() > 0) {
-							String[] extras = extra_groups.split(",");
-							for (String g : extras) {
+							ArrayList<String> sortableGroups = new ArrayList<String>(Arrays.asList(extra_groups));
+							
+							if(!primary_group_synchronization_enabled)
+							{
+								sortableGroups.add(res.getString(groups_id_field));
+							}
+							
+							Collections.sort(sortableGroups, new Comparator<String>() {
+								public int compare(String s1, String s2) {
+									return ((Integer)weightings.getInt(groups.get(s1).toString())).compareTo(weightings.getInt(groups.get(2).toString()));
+								}
+							});							
+							
+							for (String g : sortableGroups) {
 								if(prerequisites.isSet(groups.get(g).toString()) && !extra_groups.contains(String.valueOf(prerequisites.getInt((String)groups.get(g)))))
 									continue;
 								
@@ -1914,6 +1931,8 @@ public class Main extends JavaPlugin {
 				"basic-tracking.field-lifeticks-formatted-field", "");
 		
 		prerequisites = this.getConfig().getConfigurationSection("prerequisites");
+		
+		weightings = this.getConfig().getConfigurationSection("weightings");
 
 		if (use_banned) {
 			is_banned_field = this.getConfig().getString(

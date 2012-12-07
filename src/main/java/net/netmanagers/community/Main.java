@@ -736,7 +736,7 @@ public class Main extends JavaPlugin {
 									if(!groups.containsKey(s2) || !weightings.isSet((groups.get(s2).toString())))
 										return 1;
 
-									return ((Integer)weightings.getInt(groups.get(s1).toString())).compareTo(weightings.getInt(groups.get(2).toString()));
+									return ((Integer)weightings.getInt(groups.get(s1).toString())).compareTo(weightings.getInt(groups.get(s2).toString()));
 								}
 							});							
 							

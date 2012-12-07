@@ -715,7 +715,7 @@ public class Main extends JavaPlugin {
 						if (extra_groups.length() > 0) {
 							String[] extras = extra_groups.split(",");
 							for (String g : extras) {
-								if(prerequisites.isSet(groups.get(g).toString()) && extra_groups.contains(String.valueOf(prerequisites.getInt((String)groups.get(g)))))
+								if(prerequisites.isSet(groups.get(g).toString()) && !extra_groups.contains(String.valueOf(prerequisites.getInt((String)groups.get(g)))))
 									continue;
 								
 								if (!g.isEmpty()) {

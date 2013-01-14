@@ -490,12 +490,13 @@ public class Main extends JavaPlugin {
 		return false;
 	}
 
-	public static boolean removeGroups(Player player) {
+	public static boolean removeGroups(Player player, ArrayList<String> exclude) {
 		try {
 			if (permissions_system.equalsIgnoreCase("PEX")) {
 				for(PermissionGroup grp : PermissionsEx.getUser(player.getName()).getGroups())
 				{
-					PermissionsEx.getUser(player.getName()).removeGroup(grp.getName());
+					if(!exclude.contains(grp.getName()))
+						PermissionsEx.getUser(player.getName()).removeGroup(grp.getName());
 				}
 				return true;
 			}
@@ -505,7 +506,8 @@ public class Main extends JavaPlugin {
 				for(Object g : groups.values())
 				{
 					String gr = g.toString();
-					Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "permissions player removegroup " + player.getName() + " " + gr);
+					if(!exclude.contains(gr))
+						Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "permissions player removegroup " + player.getName() + " " + gr);
 				}
 				Bukkit.getLogger().info("---------------------------------------------------");
 			}
@@ -690,9 +692,6 @@ public class Main extends JavaPlugin {
 							requirements_met = false;
 						}
 					}
-					
-					// Remove all of their groups FIRST
-					removeGroups(p);
 
 					if (primary_group_synchronization_enabled) {
 						// Note: groups is a map <String, Object> so we need the
@@ -749,7 +748,17 @@ public class Main extends JavaPlugin {
 
 									return ((Integer)weightings.getInt(groups.get(s1).toString())).compareTo(weightings.getInt(groups.get(s2).toString()));
 								}
-							});							
+							});
+							
+							// Cache the strings, we're optimising removals here.
+							ArrayList<String> theirGroups = new ArrayList<String>();
+							for (String g : sortableGroups) {
+								if(groups.containsKey(g))
+									theirGroups.add((String) groups.get(g));
+							}
+							
+							// Remove all of their groups FIRST
+							removeGroups(p, theirGroups);
 							
 							for (String g : sortableGroups) {
 								if(!groups.containsKey(g))
@@ -764,6 +773,10 @@ public class Main extends JavaPlugin {
 								}
 							}
 						}
+					}
+					
+					if (permissions_system.equalsIgnoreCase("PermsBukkit")) {
+						PermissionHandlerPermissionsBukkit.savePermissions();
 					}
 
 					if (firstsync) {

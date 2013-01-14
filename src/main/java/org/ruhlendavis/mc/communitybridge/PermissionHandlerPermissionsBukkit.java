@@ -153,6 +153,15 @@ public class PermissionHandlerPermissionsBukkit implements PermissionHandler
 	}
 
 	/**
+	 * Save Permissions
+	 * @return True if save succeeded, false if it failed.
+	 */
+	static public boolean savePermissions()
+	{
+		return Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "permissions save");
+	}
+	
+	/**
 	 * Sets a player's primary group. PermissionsBukkit doesn't have a primary group, so this calls AddToGroup.
 	 * 
 	 * @param playerName String containing player's name to set

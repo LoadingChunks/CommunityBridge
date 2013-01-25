@@ -754,16 +754,8 @@ public class Main extends JavaPlugin {
 							ArrayList<String> theirGroups = new ArrayList<String>();
 							for (String g : sortableGroups) {
 								
-								try {
-									if(prerequisites != null &&
-											prerequisites.isSet(groups.get(g).toString()) &&
-												(extra_groups == null || !extra_groups.contains(String.valueOf(prerequisites.getInt((String)groups.get(g))))))
-										continue;
-								} catch(Exception e)
-								{
-									e.printStackTrace();
+								if(prerequisites != null && groups.containsKey(g) && prerequisites.isSet(groups.get(g).toString()) && (extra_groups == null || !extra_groups.contains(String.valueOf(prerequisites.getInt((String)groups.get(g))))))
 									continue;
-								}
 
 								if(groups.containsKey(g))
 									theirGroups.add((String) groups.get(g));

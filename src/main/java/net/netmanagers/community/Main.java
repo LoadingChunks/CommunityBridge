@@ -753,13 +753,20 @@ public class Main extends JavaPlugin {
 							// Cache the strings, we're optimising removals here.
 							ArrayList<String> theirGroups = new ArrayList<String>();
 							for (String g : sortableGroups) {
-								if(prerequisites != null && prerequisites.isSet(
-										groups.get(g).toString())
-											&& (extra_groups == null || !extra_groups.contains(
-												String.valueOf(
-														prerequisites.getInt((String)groups.get(g))))))
-									continue;
 								
+								try {
+									if(prerequisites != null && prerequisites.isSet(
+											groups.get(g).toString())
+												&& (extra_groups == null || !extra_groups.contains(
+														String.valueOf(
+																prerequisites.getInt((String)groups.get(g))))))
+										continue;
+								} catch(Exception e)
+								{
+									e.printStackTrace();
+									continue;
+								}
+
 								if(groups.containsKey(g))
 									theirGroups.add((String) groups.get(g));
 							}

@@ -1,5 +1,6 @@
 package net.netmanagers.community;
 
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -765,6 +766,8 @@ public class Main extends JavaPlugin {
 							
 							removeGroups(p, true);
 							
+							String toadd = "";
+							
 							for (String g : sortableGroups) {
 								if(!groups.containsKey(g))
 									continue;
@@ -773,10 +776,14 @@ public class Main extends JavaPlugin {
 									continue;
 								
 								if (!g.isEmpty()) {
-									addGroup((String) groups.get(g), p,
-											firstsync);
+									//addGroup((String) groups.get(g), p, firstsync);
+									toadd = toadd + "," + (String)groups.get(g);
 								}
 							}
+							
+							toadd = toadd.substring(0, toadd.length() - 1);
+							
+							addGroup(toadd, p, true);
 						}
 					}
 					

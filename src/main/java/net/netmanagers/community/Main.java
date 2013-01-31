@@ -777,11 +777,11 @@ public class Main extends JavaPlugin {
 								
 								if (!g.isEmpty()) {
 									//addGroup((String) groups.get(g), p, firstsync);
-									toadd = toadd + "," + (String)groups.get(g);
+									toadd = toadd + "," + ((String)groups.get(g)).trim();
 								}
 							}
 							
-							toadd = toadd.substring(0, toadd.length() - 1);
+							toadd = toadd.substring(1);
 							
 							addGroup(toadd, p, true);
 						}

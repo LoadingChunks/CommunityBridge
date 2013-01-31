@@ -490,12 +490,11 @@ public class Main extends JavaPlugin {
 		return false;
 	}
 
-	public static boolean removeGroups(Player player, ArrayList<String> exclude) {
+	public static boolean removeGroups(Player player, Boolean all) {
 		try {
 			if (permissions_system.equalsIgnoreCase("PEX")) {
 				for(PermissionGroup grp : PermissionsEx.getUser(player.getName()).getGroups())
 				{
-					if(!exclude.contains(grp.getName()))
 						PermissionsEx.getUser(player.getName()).removeGroup(grp.getName());
 				}
 				return true;
@@ -503,11 +502,14 @@ public class Main extends JavaPlugin {
 			
 			if(permissions_system.equalsIgnoreCase("PermsBukkit")) {
 				Bukkit.getLogger().info("---------------------------------------------------");
-				for(Object g : groups.values())
-				{
-					String gr = g.toString();
-					//if(!exclude.contains(gr))
-					Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "permissions player removegroup " + player.getName() + " " + gr);
+				if(all)
+					Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "permissions player removegroup " + player.getName() + " all");
+				else {
+					for(Object g : groups.values())
+					{
+						String gr = g.toString();
+						Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "permissions player removegroup " + player.getName() + " " + gr);
+					}
 				}
 				Bukkit.getLogger().info("---------------------------------------------------");
 			}
@@ -761,10 +763,7 @@ public class Main extends JavaPlugin {
 									theirGroups.add((String) groups.get(g));
 							}
 							
-							// Remove all of their groups FIRST
-							ArrayList<String> all = new ArrayList<String>();
-							all.add("all");
-							removeGroups(p, all);
+							removeGroups(p, true);
 							
 							for (String g : sortableGroups) {
 								if(!groups.containsKey(g))

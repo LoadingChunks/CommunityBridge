@@ -506,8 +506,8 @@ public class Main extends JavaPlugin {
 				for(Object g : groups.values())
 				{
 					String gr = g.toString();
-					if(!exclude.contains(gr))
-						Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "permissions player removegroup " + player.getName() + " " + gr);
+					//if(!exclude.contains(gr))
+					Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "permissions player removegroup " + player.getName() + " " + gr);
 				}
 				Bukkit.getLogger().info("---------------------------------------------------");
 			}

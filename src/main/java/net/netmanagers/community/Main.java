@@ -762,7 +762,9 @@ public class Main extends JavaPlugin {
 							}
 							
 							// Remove all of their groups FIRST
-							removeGroups(p, theirGroups);
+							ArrayList<String> all = new ArrayList<String>();
+							all.add("all");
+							removeGroups(p, all);
 							
 							for (String g : sortableGroups) {
 								if(!groups.containsKey(g))
